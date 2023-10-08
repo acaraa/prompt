@@ -15,7 +15,7 @@
             flex-direction: column;
             align-items: center;
         }
-        select, input[type="text"], textarea, button {
+        select, input, button {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -36,32 +36,85 @@
 </head>
 <body>
     <div style="width: 50%;">
-        <!-- Dropdowns -->
-        <label for="Style">Style:</label>
-        <select id="Style">
-            <!-- Options for Style -->
-        </select>
-        <!-- ... Other dropdowns ... -->
-        <label for="topic">이미지 주제 입력:</label>
+<label for="Style">Style:</label>
+<select id="Style">
+<option value="Abstract">Abstract</option>
+<option value="Classic">Classic</option>
+<option value="Dada movement">Dada movement</option>
+<option value="Modern">Modern</option>
+<option value="Psychedelic">Psychedelic</option>
+<option value="Orphism">Orphism</option>
+<option value="Minimalism">Minimalism</option>
+<option value="Naive art">Naive art</option>
+<option value="Retro">Retro</option>
+<option value="Surreal">Surreal</option>
+</select>
+<label for="Artist">Artist:</label>
+<select id="Artist">
+<option value="Abbott Fuller Graves">Abbott Fuller Graves</option>
+<option value="Abbott Handerson Thayer">Abbott Handerson Thayer</option>
+<option value="Anne Truitt">Anne Truitt</option>
+<option value="Auguste Rodin">Auguste Rodin</option>
+<option value="Afarin Sajedi">Afarin Sajedi</option>
+<option value="Brian Jungen">Brian Jungen</option>
+<option value="Dan Colen">Dan Colen</option>
+<option value="Jamie Hewlett">Jamie Hewlett</option>
+<option value="Fairy Kei">Fairy Kei</option>
+</select>
+<label for="Option">Option:</label>
+<select id="Option">
+<option value="Color Grading">Color Grading</option>
+<option value="Depth of Field">Depth of Field</option>
+<option value="Cinematic">Cinematic</option>
+<option value="Backlight">Backlight</option>
+<option value="Natural Lighting">Natural Lighting</option>
+<option value="HDR">HDR</option>
+<option value="Incandescent">Incandescent</option>
+<option value="Moody Lighting">Moody Lighting</option>
+<option value="Glowing">Glowing</option>
+<option value="Ektachrome">Ektachrome</option>
+<option value="Studio Lighting">Studio Lighting</option>
+</select>
+<label for="Detail level">Detail level:</label>
+<select id="Detail level">
+<option value="minimalistic details">minimalistic details</option>
+<option value="normal details">normal details</option>
+<option value="high details">high details</option>
+<option value="very high details">very high details</option>
+<option value="extreme level of details">extreme level of details</option>
+</select>
+<label for="Output style">Output style:</label>
+<select id="Output style">
+<option value="pen drawing">pen drawing</option>
+<option value="oil painting">oil painting</option>
+<option value="water colour painting">water colour painting</option>
+<option value="3d render">3d render</option>
+<option value="sculpture">sculpture</option>
+<option value="cartoon">cartoon</option>
+<option value="anime">anime</option>
+<option value="line art">line art</option>
+<option value="pixel art">pixel art</option>
+<option value="graffiti">graffiti</option>
+<option value="sketch">sketch</option>
+</select>
+
+        <label for="topic">이미지 주제:</label>
         <input type="text" id="topic">
-        <button id="generateButton">프롬프트 생성</button>
+        <button id="generateButton">생성</button>
+        <label for="output">출력:</label>
         <textarea id="output" readonly></textarea>
         <button id="copyButton">클립보드에 복사</button>
     </div>
 
-    <!-- JavaScript Functions -->
-    <script>
+    <script type="text/javascript">
         document.getElementById("generateButton").addEventListener("click", function() {
-            const categories = ["Style", "Artist", "Option", "Detail level", "Output style"];
-            let promptParts = [];
-            for (let category of categories) {
-                let selectedValue = document.getElementById(category).value;
-                promptParts.push(selectedValue);
-            }
-            const topic = document.getElementById('topic').value;
-            const output = topic + ', ' + promptParts.join(', ');
+            const topic = document.getElementById("topic").value;
+            const values = [];
+values.push(document.getElementById("Style").value);values.push(document.getElementById("Artist").value);values.push(document.getElementById("Option").value);values.push(document.getElementById("Detail level").value);values.push(document.getElementById("Output style").value);
+            const output = topic + ', ' + values.join(', ');
             document.getElementById('output').value = output;
         });
+
         document.getElementById("copyButton").addEventListener("click", function() {
             const outputTextarea = document.getElementById('output');
             outputTextarea.select();
