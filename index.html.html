@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프롬프트 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F7F7F7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        select, input[type="text"], textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 50%;">
+        <!-- Dropdowns -->
+        <label for="Style">Style:</label>
+        <select id="Style">
+            <!-- Options for Style -->
+        </select>
+        <!-- ... Other dropdowns ... -->
+        <label for="topic">이미지 주제 입력:</label>
+        <input type="text" id="topic">
+        <button id="generateButton">프롬프트 생성</button>
+        <textarea id="output" readonly></textarea>
+        <button id="copyButton">클립보드에 복사</button>
+    </div>
+
+    <!-- JavaScript Functions -->
+    <script>
+        document.getElementById("generateButton").addEventListener("click", function() {
+            const categories = ["Style", "Artist", "Option", "Detail level", "Output style"];
+            let promptParts = [];
+            for (let category of categories) {
+                let selectedValue = document.getElementById(category).value;
+                promptParts.push(selectedValue);
+            }
+            const topic = document.getElementById('topic').value;
+            const output = topic + ', ' + promptParts.join(', ');
+            document.getElementById('output').value = output;
+        });
+        document.getElementById("copyButton").addEventListener("click", function() {
+            const outputTextarea = document.getElementById('output');
+            outputTextarea.select();
+            document.execCommand('copy');
+        });
+    </script>
+</body>
+</html>
